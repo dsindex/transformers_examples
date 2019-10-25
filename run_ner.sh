@@ -87,11 +87,33 @@ export -f readlink
 CDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]})))
 PDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]}))/..)
 
-MAX_LENGTH=128
-BERT_MODEL=bert-base-cased
 
+# create labels.txt
 cd ${CDIR}/data
-cat data/train.txt dev.txt test.txt | cut -d " " -f 2 | grep -v "^$"| sort | uniq > labels.txt
+cat train.txt dev.txt test.txt | cut -d " " -f 2 | grep -v "^$"| sort | uniq > labels.txt
 cd -
 
+# training and evaluation
+
+MAX_LENGTH=128
+BERT_MODEL=bert-base-cased
+OUTPUT_DIR=engeval-model
+BATCH_SIZE=32
+NUM_EPOCHS=3
+SAVE_STEPS=750
+SEED=1
+
+python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
+--model_type bert \
+--labels ${CDIR}/data/labels.txt \
+--model_name_or_path ${BERT_MODEL} \
+--output_dir ${OUTPUT_DIR} \
+--max_seq_length  ${MAX_LENGTH} \
+--num_train_epochs ${NUM_EPOCHS} \
+--per_gpu_train_batch_size ${BATCH_SIZE} \
+--save_steps ${SAVE_STEPS} \
+--seed ${SEED} \
+--do_train \
+--do_eval \
+--do_predict
 
