@@ -50,5 +50,5 @@ $ ./run_ner.sh -v -v
 ```
   - tensorboardX
 ```
-$ tensorboard --logdir runs/*/ --port 22092 --bind_all
+$ tensorboard --logdir runs/event-dir-name/ --port 22092 --bind_all
 ```
