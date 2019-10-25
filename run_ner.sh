@@ -111,6 +111,7 @@ python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
 --labels ${CDIR}/data/labels.txt \
 --model_name_or_path ${BERT_MODEL} \
 --output_dir ${OUTPUT_DIR} \
+--overwrite_output_dir \
 --max_seq_length  ${MAX_LENGTH} \
 --num_train_epochs ${NUM_EPOCHS} \
 --per_gpu_train_batch_size ${BATCH_SIZE} \
