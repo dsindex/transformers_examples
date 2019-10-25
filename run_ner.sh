@@ -106,6 +106,8 @@ WARMUP_STEPS=0     # default = 0
 SAVE_STEPS=750
 SEED=1
 
+rm -rf ${CDIR}/runs
+
 python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
 --model_type ${MODEL_TYPE} \
 --labels ${CDIR}/data/labels.txt \
