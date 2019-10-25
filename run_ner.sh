@@ -95,25 +95,32 @@ cd -
 
 # training and evaluation
 
-MAX_LENGTH=128
-BERT_MODEL=bert-base-cased
+MAX_LENGTH=180     # default = 128
+BERT_MODEL=bert-large-cased
+MODEL_TYPE=bert
 OUTPUT_DIR=engeval-model
 BATCH_SIZE=32
 NUM_EPOCHS=3
+LEARNING_RATE=2e-5 # default = 5e-5
+WARMUP_STEPS=0     # default = 0
 SAVE_STEPS=750
 SEED=1
 
 python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
---model_type bert \
+--model_type ${MODEL_TYPE} \
 --labels ${CDIR}/data/labels.txt \
 --model_name_or_path ${BERT_MODEL} \
 --output_dir ${OUTPUT_DIR} \
 --max_seq_length  ${MAX_LENGTH} \
 --num_train_epochs ${NUM_EPOCHS} \
 --per_gpu_train_batch_size ${BATCH_SIZE} \
+--learning_rate  ${LEARNING_RATE} \
+--warmup_steps   ${WARMUP_STEPS} \
 --save_steps ${SAVE_STEPS} \
 --seed ${SEED} \
 --do_train \
+--evaluate_during_training \
 --do_eval \
+--evaluate_during_training \
 --do_predict
 
