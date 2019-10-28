@@ -1,7 +1,8 @@
-# examples of transformers
+## examples of transformers
+
 reference code for [transformers](https://github.com/huggingface/transformers) of huggingface
 
-# requirements
+## requirements
 
 ```
 * python 3.6
@@ -13,16 +14,18 @@ $ pip install seqeval
 $ pip install tensorboardX
 ```
 
-# contents
+## contents
 
-- Examples
-  - BERT usage
+# Examples
+
+- BERT usage
 ```
 $ python example1.py
 ```
 
-- NER for CoNLL2003 eng dataset(using word only)
-  - train and evaluate
+# NER for CoNLL2003 eng dataset(using word only)
+
+- train and evaluate
 ```
 $ ./train-ner.sh -v -v
 
@@ -58,9 +61,11 @@ precision = 0.9082184610015704
 recall = 0.9215651558073654
 
 ```
-  - tensorboardX
+
+- tensorboardX
 ```
 $ tensorboard --logdir engeval-model/runs/ --port port-number --bind_all
 ```
-  - f1 score for dev set
+
+- f1 score for dev set
 ![](/data/eval_f1.png)
