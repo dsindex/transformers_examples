@@ -107,7 +107,6 @@ SEED=1
 
 
 function train {
-  rm -rf ${CDIR}/runs
   python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
   --model_type ${MODEL_TYPE} \
   --labels ${CDIR}/data/labels.txt \
@@ -127,4 +126,5 @@ function train {
   --do_eval
 }
 
+rm -rf ${OUTPUT_DIR}
 train
