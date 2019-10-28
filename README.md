@@ -59,7 +59,7 @@ recall = 0.9215651558073654
 ```
   - tensorboardX
 ```
-$ tensorboard --logdir runs/event-dir-name/ --port port-number --bind_all
+$ tensorboard --logdir engeval-model/runs/ --port port-number --bind_all
 ```
   - f1 score for dev set
 ![](/data/eval_f1.png)
