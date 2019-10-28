@@ -162,14 +162,15 @@ def train(args, train_dataset, model, tokenizer, labels, pad_token_label_id):
                     logging_loss = tr_loss
 
                 if args.local_rank == -1 and args.evaluate_during_training:
-                    if max_f1 < cur_f1:
+                    if max_f1 < cur_f1 and args.logging_steps > 0 and global_step % args.logging_steps == 0:
                         max_f1 = cur_f1
-                        # Save model checkpoint
+                        # Save best model checkpoint
                         output_dir = os.path.join(args.output_dir, "checkpoint-{}".format(global_step))
                         if not os.path.exists(output_dir):
                             os.makedirs(output_dir)
                         model_to_save = model.module if hasattr(model, "module") else model  # Take care of distributed/parallel training
                         model_to_save.save_pretrained(output_dir)
+                        tokenizer.save_pretrained(output_dir)
                         torch.save(args, os.path.join(output_dir, "training_args.bin"))
                         logger.info("Saving model checkpoint to %s", output_dir)
                 else:
@@ -180,6 +181,7 @@ def train(args, train_dataset, model, tokenizer, labels, pad_token_label_id):
                             os.makedirs(output_dir)
                         model_to_save = model.module if hasattr(model, "module") else model  # Take care of distributed/parallel training
                         model_to_save.save_pretrained(output_dir)
+                        tokenizer.save_pretrained(output_dir)
                         torch.save(args, os.path.join(output_dir, "training_args.bin"))
                         logger.info("Saving model checkpoint to %s", output_dir)
 

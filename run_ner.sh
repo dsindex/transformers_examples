@@ -130,16 +130,13 @@ function train {
 }
 
 function predict {
-local _OUTPUT_DIR=$1
+  local _OUTPUT_DIR=$1
 
-  if [ ${OUTPUT_DIR} != ${_OUTPUT_DIR} ]; then
-    cp -rf ${_OUTPUT_DIR}/* ${OUTPUT_DIR}
-  fi
   python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
   --model_type ${MODEL_TYPE} \
   --labels ${CDIR}/data/labels.txt \
   --model_name_or_path ${MODEL_NAME_OR_PATH} \
-  --output_dir ${OUTPUT_DIR} \
+  --output_dir ${_OUTPUT_DIR} \
   --max_seq_length  ${MAX_LENGTH} \
   --seed ${SEED} \
   --do_predict
