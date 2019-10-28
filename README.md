@@ -1,8 +1,8 @@
-## examples of transformers
+# Description
 
 reference code for [transformers](https://github.com/huggingface/transformers) of huggingface
 
-## requirements
+# Requirements
 
 ```
 * python 3.6
@@ -13,8 +13,6 @@ $ pip install git+https://github.com/huggingface/transformers.git
 $ pip install seqeval
 $ pip install tensorboardX
 ```
-
-## contents
 
 # Examples
 
