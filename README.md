@@ -49,17 +49,13 @@ loss = 0.11602993070967689
 precision = 0.9059665038381018
 recall = 0.9194405099150141
 
+# after modifying run-ner.py to save the best model
+
 3. roberta-large
 * dev.txt
-f1 = 0.9591888041565406
-loss = 0.036815324224663694
-precision = 0.9552662326823569
-recall = 0.9631437226523056
+
 * test.txt
-f1 = 0.9138248443937933
-loss = 0.13418018649573932
-precision = 0.9050182323320021
-recall = 0.9228045325779037
+
 ```
   - tensorboardX
 ```
