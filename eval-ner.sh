@@ -107,4 +107,4 @@ function evaluate {
   --do_predict
 }
 
-evaluate ${OUTPUT_DIR}/checkpoint-5600
+evaluate ${OUTPUT_DIR}/checkpoint-1800
