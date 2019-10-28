@@ -95,37 +95,55 @@ cd -
 
 # training and evaluation
 
-MAX_LENGTH=180     # default = 128
-#MODEL_TYPE=bert
-#MODEL_NAME_OR_PATH=bert-large-cased
-MODEL_TYPE=roberta
-MODEL_NAME_OR_PATH=roberta-large
+MAX_LENGTH=180
+MODEL_TYPE=roberta               # bert
+MODEL_NAME_OR_PATH=roberta-large # bert-large-cased
 OUTPUT_DIR=engeval-model
 BATCH_SIZE=32
-NUM_EPOCHS=3
-LEARNING_RATE=5e-5 # default = 5e-5
-WARMUP_STEPS=0     # default = 0
-SAVE_STEPS=750
+NUM_EPOCHS=15
+LEARNING_RATE=5e-5
+WARMUP_STEPS=0
+LOGGING_STEPS=50
+SAVE_STEPS=100
 SEED=1
 
-rm -rf ${CDIR}/runs
 
-python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
---model_type ${MODEL_TYPE} \
---labels ${CDIR}/data/labels.txt \
---model_name_or_path ${MODEL_NAME_OR_PATH} \
---output_dir ${OUTPUT_DIR} \
---overwrite_output_dir \
---max_seq_length  ${MAX_LENGTH} \
---num_train_epochs ${NUM_EPOCHS} \
---per_gpu_train_batch_size ${BATCH_SIZE} \
---learning_rate  ${LEARNING_RATE} \
---warmup_steps   ${WARMUP_STEPS} \
---save_steps ${SAVE_STEPS} \
---seed ${SEED} \
---do_train \
---evaluate_during_training \
---do_eval \
---evaluate_during_training \
---do_predict
+function train {
+  rm -rf ${CDIR}/runs
+  python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
+  --model_type ${MODEL_TYPE} \
+  --labels ${CDIR}/data/labels.txt \
+  --model_name_or_path ${MODEL_NAME_OR_PATH} \
+  --output_dir ${OUTPUT_DIR} \
+  --overwrite_output_dir \
+  --max_seq_length  ${MAX_LENGTH} \
+  --num_train_epochs ${NUM_EPOCHS} \
+  --per_gpu_train_batch_size ${BATCH_SIZE} \
+  --learning_rate  ${LEARNING_RATE} \
+  --warmup_steps   ${WARMUP_STEPS} \
+  --logging_steps  ${LOGGING_STEPS} \
+  --save_steps ${SAVE_STEPS} \
+  --seed ${SEED} \
+  --do_train \
+  --evaluate_during_training \
+  --do_eval
+}
 
+function predict {
+local _OUTPUT_DIR=$1
+
+  if [ ${OUTPUT_DIR} != ${_OUTPUT_DIR} ]; then
+    cp -rf ${_OUTPUT_DIR}/* ${OUTPUT_DIR}
+  fi
+  python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
+  --model_type ${MODEL_TYPE} \
+  --labels ${CDIR}/data/labels.txt \
+  --model_name_or_path ${MODEL_NAME_OR_PATH} \
+  --output_dir ${OUTPUT_DIR} \
+  --max_seq_length  ${MAX_LENGTH} \
+  --seed ${SEED} \
+  --do_predict
+}
+
+train
+predict ${OUTPUT_DIR}
