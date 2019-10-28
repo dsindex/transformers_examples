@@ -22,6 +22,7 @@ $ python example1.py
 ```
 
 - NER for CoNLL2003 eng dataset(using word only)
+  - train and evaluate
 ```
 $ ./train-ner.sh -v -v
 
