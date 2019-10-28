@@ -25,7 +25,7 @@ $ python example1.py
 ```
 $ ./train-ner.sh -v -v
 
-* select the checkpoint dir for the best model
+* select the checkpoint dir for the best model, you may refer to the tensorboard.
 * modify evalt-ner.sh
 * ex) evaluate ${OUTPUT_DIR}/checkpoint-3550
 $ ./eval-ner.sh -v -v
