@@ -21,7 +21,7 @@ $ pip install tensorboardX
 $ python example1.py
 ```
 
-- NER for CoNLL2003 eng dataset(only using word)
+- NER for CoNLL2003 eng dataset(using word only)
 ```
 $ ./train-ner.sh -v -v
 * select the checkpoint dir for the best model
