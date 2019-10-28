@@ -93,7 +93,7 @@ MODEL_NAME_OR_PATH=roberta-large # bert-large-cased
 OUTPUT_DIR=engeval-model
 SEED=1
 
-function predict {
+function evaluate {
   local _OUTPUT_DIR=$1
 
   python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
@@ -103,7 +103,8 @@ function predict {
   --output_dir ${_OUTPUT_DIR} \
   --max_seq_length  ${MAX_LENGTH} \
   --seed ${SEED} \
+  --do_eval \
   --do_predict
 }
 
-predict ${OUTPUT_DIR}
+evaluate ${OUTPUT_DIR}/checkpoint-5600

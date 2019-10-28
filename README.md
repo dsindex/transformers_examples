@@ -24,10 +24,11 @@ $ python example1.py
 - NER for CoNLL2003 eng dataset(using word only)
 ```
 $ ./train-ner.sh -v -v
+
 * select the checkpoint dir for the best model
-* modify predict-ner.sh
-* ex) predict ${OUTPUT_DIR}/checkpoint-3550
-$ ./predict-ner.sh -v -v
+* modify evalt-ner.sh
+* ex) evaluate ${OUTPUT_DIR}/checkpoint-3550
+$ ./eval-ner.sh -v -v
 
 1. bert-base-cased
 
@@ -44,8 +45,16 @@ $ ./predict-ner.sh -v -v
 3. roberta-large
 
 * dev.txt
+f1 = 0.9630064591896651
+loss = 0.0625708463778838
+precision = 0.960026760327814
+recall = 0.9660047122181084
 
 * test.txt
+f1 = 0.9118423367939468
+loss = 0.2133701834467194
+precision = 0.9062609303952431
+recall = 0.9174929178470255
 
 ```
   - tensorboardX
