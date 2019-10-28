@@ -96,8 +96,10 @@ cd -
 # training and evaluation
 
 MAX_LENGTH=180     # default = 128
-BERT_MODEL=bert-large-cased
-MODEL_TYPE=bert
+#MODEL_TYPE=bert
+#MODEL_NAME_OR_PATH=bert-large-cased
+MODEL_TYPE=roberta
+MODEL_NAME_OR_PATH=roberta-large
 OUTPUT_DIR=engeval-model
 BATCH_SIZE=32
 NUM_EPOCHS=3
@@ -111,7 +113,7 @@ rm -rf ${CDIR}/runs
 python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
 --model_type ${MODEL_TYPE} \
 --labels ${CDIR}/data/labels.txt \
---model_name_or_path ${BERT_MODEL} \
+--model_name_or_path ${MODEL_NAME_OR_PATH} \
 --output_dir ${OUTPUT_DIR} \
 --overwrite_output_dir \
 --max_seq_length  ${MAX_LENGTH} \
