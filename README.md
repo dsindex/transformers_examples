@@ -65,4 +65,4 @@ recall = 0.9228045325779037
 ```
 $ tensorboard --logdir runs/event-dir-name/ --port port-number --bind_all
 ```
-![eval_f1][]
+![data/eval_f1.png][]
