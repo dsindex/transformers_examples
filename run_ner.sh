@@ -101,7 +101,7 @@ MODEL_TYPE=bert
 OUTPUT_DIR=engeval-model
 BATCH_SIZE=32
 NUM_EPOCHS=3
-LEARNING_RATE=2e-5 # default = 5e-5
+LEARNING_RATE=5e-5 # default = 5e-5
 WARMUP_STEPS=0     # default = 0
 SAVE_STEPS=750
 SEED=1

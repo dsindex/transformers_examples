@@ -8,6 +8,7 @@ reference code for [transformers](https://github.com/huggingface/transformers) o
 * CUDA 10
 $ pip install tensorflow-gpu==2.0
 $ pip install torch==1.2.0
+$ pip install git+https://github.com/huggingface/transformers.git
 $ pip install seqeval
 $ pip install tensorboardX
 ```
