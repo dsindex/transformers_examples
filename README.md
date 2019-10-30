@@ -46,17 +46,20 @@ $ ./eval-ner.sh -v -v
 
 3. roberta-large
 
+* find possible max-f1-score using 'test.txt' with evaluate_during_training
+  => results, _ = evaluate(args, model, tokenizer, labels, pad_token_label_id, mode="test")
+
 * dev.txt
-f1 = 0.9567476948868399
-loss = 0.0387861595115888
-precision = 0.9530728122912492
-recall = 0.9604510265903736
+f1 = 0.9560697518443997
+loss = 0.047375404791811564
+precision = 0.9525559639158035
+recall = 0.9596095590710199
 
 * test.txt
-f1 = 0.9148431320854206
-loss = 0.14893963946945982
-precision = 0.9082184610015704
-recall = 0.9215651558073654
+f1 = 0.9216322948661694
+loss = 0.15627447860190471
+precision = 0.913694101270228
+recall = 0.9297096317280453
 
 ```
 
