@@ -46,8 +46,10 @@ $ ./eval-ner.sh -v -v
 
 3. roberta-large
 
-* find possible max-f1-score using 'test.txt' with evaluate_during_training
+* we can find possible max-f1-score for 'test.txt'.
   => results, _ = evaluate(args, model, tokenizer, labels, pad_token_label_id, mode="test")
+  actual f1-score for 'test.txt' is usually lower than this.
+  => results, _ = evaluate(args, model, tokenizer, labels, pad_token_label_id, mode="dev")
 
 * dev.txt
 f1 = 0.9560697518443997
