@@ -1,6 +1,6 @@
 # Description
 
-reference code for [transformers](https://github.com/huggingface/transformers) of huggingface
+reference code for named entity tagging using huggingface's [transformers](https://github.com/huggingface/transformers)
 
 # Requirements
 
