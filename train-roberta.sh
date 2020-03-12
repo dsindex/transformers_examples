@@ -95,9 +95,9 @@ TOKENIZER_NAME=roberta
 
 TRAIN_FILE=${CDIR}/wikitext-2-raw/wiki.train.raw
 EVAL_FILE=${CDIR}/wikitext-2-raw/wiki.test.raw
-OUTPUT_DIR=${CDIR}/output
+OUTPUT_DIR=${CDIR}/roberta-base.v1
 MODEL_TYPE=roberta
-INIT_DIR=${CDIR}/init-roberta-base
+CONFIG_DIR=${CDIR}/config-roberta-base
 
 function train_tokenizer {
   python train-tokenizer.py --data_dir=${DATA_DIR} --file_suffix=${FILE_SUFFIX} --vocab_size=${VOCAB_SIZE} --min_frequency=2 --tokenizer_name=${TOKENIZER_NAME}
@@ -114,8 +114,8 @@ function train_lm {
     --do_eval \
     --eval_data_file=${EVAL_FILE} \
     --mlm \
-    --config_name ${INIT_DIR} \
-    --tokenizer_name ${INIT_DIR} \
+    --config_name ${CONFIG_DIR} \
+    --tokenizer_name ${CONFIG_DIR} \
     --learning_rate 1e-4 \
     --num_train_epochs 5 \
     --save_total_limit 2 \

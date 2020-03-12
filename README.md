@@ -87,7 +87,7 @@ $ ./finetune-roberta.sh -v -v
 
 - train
 ```
-* set vocab_size in init-roberta-base/config.json
+* edit vocab_size in config-roberta-base/config.json
 $ ./train-roberta.sh -v -v
 ```
 
