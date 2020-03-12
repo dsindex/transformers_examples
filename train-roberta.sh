@@ -125,8 +125,9 @@ function train_lm {
     --seed 42 
 }
 
-rm -rf ${DATA_DIR}/*cached*
 rm -rf ${OUTPUT_DIR}
+
+export CUDA_VISIBLE_DEVICES=0
 
 train_tokenizer
 train_lm

@@ -25,8 +25,10 @@ def main():
     parser.add_argument('--tokenizer_name', type=str, default='roberta')
     opt = parser.parse_args()
 
-    paths = [str(x) for x in Path(opt.data_dir).glob("**/*." + opt.file_suffix)]
-   
+    inc_paths = [str(x) for x in Path(opt.data_dir).glob("**/*.%s" % (opt.file_suffix))]
+    exc_paths = [str(x) for x in Path(opt.data_dir).glob("**/*cached*")]
+    paths = list(set(inc_paths) - set(exc_paths))
+
     # Initialize a tokenizer
     tokenizer = ByteLevelBPETokenizer()
 
