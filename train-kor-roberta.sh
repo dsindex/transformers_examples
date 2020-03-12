@@ -101,8 +101,8 @@ CONFIG_DIR=${CDIR}/config-kor-roberta-base
 
 function train_tokenizer {
   python train-tokenizer.py --data_dir=${DATA_DIR} --file_suffix=${FILE_SUFFIX} --vocab_size=${VOCAB_SIZE} --min_frequency=2 --tokenizer_name=${TOKENIZER_NAME}
-  mv ${CDIR}/${TOKENIZER_NAME}-vocab.json ${INIT_DIR}/vocab.json
-  mv ${CDIR}/${TOKENIZER_NAME}-merges.txt ${INIT_DIR}/merges.txt
+  mv ${CDIR}/${TOKENIZER_NAME}-vocab.json ${CONFIG_DIR}/vocab.json
+  mv ${CDIR}/${TOKENIZER_NAME}-merges.txt ${CONFIG_DIR}/merges.txt
 }
 
 function train_lm {
