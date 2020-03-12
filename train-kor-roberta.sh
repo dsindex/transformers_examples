@@ -90,11 +90,11 @@ PDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]}))/..)
 
 DATA_DIR=${CDIR}/korean
 FILE_SUFFIX=txt
-VOCAB_SIZE=100102
+VOCAB_SIZE=50265
 TOKENIZER_NAME=roberta
 
 TRAIN_FILE=${DATA_DIR}/data.txt.train
-EVAL_FILE=${CDIR}/data.txt.valid
+EVAL_FILE=${DATA_DIR}/data.txt.valid
 OUTPUT_DIR=${CDIR}/kor-roberta-base.v1
 MODEL_TYPE=roberta
 CONFIG_DIR=${CDIR}/config-kor-roberta-base
@@ -120,11 +120,13 @@ function train_lm {
     --num_train_epochs 5 \
     --save_total_limit 2 \
     --save_steps 2000 \
-    --per_gpu_train_batch_size 16 \
+    --per_gpu_train_batch_size 8 \
     --evaluate_during_training \
     --seed 42 
 }
 
+rm -rf ${DATA_DIR}/*cached*
 rm -rf ${OUTPUT_DIR}
+
 train_tokenizer
 train_lm

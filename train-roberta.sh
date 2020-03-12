@@ -90,11 +90,11 @@ PDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]}))/..)
 
 DATA_DIR=${CDIR}/wikitext-2-raw
 FILE_SUFFIX=raw
-VOCAB_SIZE=52000
+VOCAB_SIZE=50265
 TOKENIZER_NAME=roberta
 
-TRAIN_FILE=${CDIR}/wikitext-2-raw/wiki.train.raw
-EVAL_FILE=${CDIR}/wikitext-2-raw/wiki.test.raw
+TRAIN_FILE=${DATA_DIR}/wiki.train.raw
+EVAL_FILE=${DATA_DIR}/wiki.test.raw
 OUTPUT_DIR=${CDIR}/roberta-base.v1
 MODEL_TYPE=roberta
 CONFIG_DIR=${CDIR}/config-roberta-base
@@ -125,6 +125,8 @@ function train_lm {
     --seed 42 
 }
 
+rm -rf ${DATA_DIR}/*cached*
 rm -rf ${OUTPUT_DIR}
+
 train_tokenizer
 train_lm
