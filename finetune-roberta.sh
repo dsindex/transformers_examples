@@ -100,14 +100,14 @@ EVAL_DATA_FILE=${TEST_FILE}
 
 function train {
   python ${CDIR}/run_language_modeling.py \
-  --output_dir ${OUTPUT_DIR} \
-  --model_type ${MODEL_TYPE} \
-  --model_name_or_path ${MODEL_NAME_OR_PATH} \
-  --do_train \
-  --train_data_file=${TRAIN_DATA_FILE} \
-  --do_eval \
-  --eval_data_file=${EVAL_DATA_FILE} \
-  --mlm
+    --output_dir ${OUTPUT_DIR} \
+    --model_type ${MODEL_TYPE} \
+    --model_name_or_path ${MODEL_NAME_OR_PATH} \
+    --do_train \
+    --train_data_file=${TRAIN_DATA_FILE} \
+    --do_eval \
+    --eval_data_file=${EVAL_DATA_FILE} \
+    --mlm
 }
 
 rm -rf ${OUTPUT_DIR}

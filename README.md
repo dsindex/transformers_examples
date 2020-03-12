@@ -80,5 +80,17 @@ $ tensorboard --logdir engeval-model/runs/ --port port-number --bind_all
 
 - train
 ```
-$ ./finetune_roberta.sh -v -v
+$ ./finetune-roberta.sh -v -v
 ```
+
+# Training RoBERTa from scratch
+
+- train
+```
+* set vocab_size in init-roberta-base/config.json
+$ ./train-roberta.sh -v -v
+```
+
+# References
+
+- https://huggingface.co/blog/how-to-train
