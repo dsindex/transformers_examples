@@ -40,7 +40,7 @@ def write_data(data, ratio, base_path):
     f_train = open(train_path, 'w', encoding='utf-8')
     f_valid = open(valid_path, 'w', encoding='utf-8')
     for idx, doc in enumerate(tqdm(data)):
-        if idx <= limit:
+        if idx > limit:
             f_train.write('\n'.join(doc))
             f_train.write('\n')
             f_train.write('\n')
