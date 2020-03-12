@@ -93,8 +93,8 @@ FILE_SUFFIX=txt
 VOCAB_SIZE=100102
 TOKENIZER_NAME=roberta
 
-TRAIN_FILE=${DATA_DIR}/all.train.txt
-EVAL_FILE=${CDIR}/all.test.txt
+TRAIN_FILE=${DATA_DIR}/data.txt.train
+EVAL_FILE=${CDIR}/data.txt.valid
 OUTPUT_DIR=${CDIR}/kor-roberta-base.v1
 MODEL_TYPE=roberta
 CONFIG_DIR=${CDIR}/config-kor-roberta-base
