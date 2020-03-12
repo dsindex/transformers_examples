@@ -88,16 +88,16 @@ CDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]})))
 PDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]}))/..)
 
 
-DATA_DIR=${CDIR}/wikitext-2-raw
-FILE_SUFFIX=raw
-VOCAB_SIZE=52000
+DATA_DIR=${CDIR}/korean
+FILE_SUFFIX=txt
+VOCAB_SIZE=100102
 TOKENIZER_NAME=roberta
 
-TRAIN_FILE=${CDIR}/wikitext-2-raw/wiki.train.raw
-EVAL_FILE=${CDIR}/wikitext-2-raw/wiki.test.raw
-OUTPUT_DIR=${CDIR}/roberta-base.v1
+TRAIN_FILE=${DATA_DIR}/all.train.txt
+EVAL_FILE=${CDIR}/all.test.txt
+OUTPUT_DIR=${CDIR}/kor-roberta-base.v1
 MODEL_TYPE=roberta
-CONFIG_DIR=${CDIR}/config-roberta-base
+CONFIG_DIR=${CDIR}/config-kor-roberta-base
 
 function train_tokenizer {
   python train-tokenizer.py --data_dir=${DATA_DIR} --file_suffix=${FILE_SUFFIX} --vocab_size=${VOCAB_SIZE} --min_frequency=2 --tokenizer_name=${TOKENIZER_NAME}
