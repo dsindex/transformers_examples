@@ -117,10 +117,10 @@ function train_lm {
     --config_name ${CONFIG_DIR} \
     --tokenizer_name ${CONFIG_DIR} \
     --learning_rate 1e-4 \
-    --num_train_epochs 5 \
+    --num_train_epochs 50 \
     --save_total_limit 2 \
     --save_steps 2000 \
-    --per_gpu_train_batch_size 8 \
+    --per_gpu_train_batch_size 16 \
     --evaluate_during_training \
     --seed 42 
 }
