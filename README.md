@@ -1,17 +1,16 @@
 # Description
 
-reference code for named entity tagging using huggingface's [transformers](https://github.com/huggingface/transformers)
+- reference code for named entity tagging using huggingface's [transformers](https://github.com/huggingface/transformers)
+- fintuning or training RoBERTa from scratch.
 
 # Requirements
 
 ```
 * python 3.6
 * CUDA 10
+$ pip install -r requirements
 $ pip install tensorflow-gpu==2.0.0
-$ pip install torch==1.2.0
 $ pip install git+https://github.com/huggingface/transformers.git
-$ pip install seqeval
-$ pip install tensorboardX
 ```
 
 # Examples
@@ -69,9 +68,6 @@ recall = 0.9297096317280453
 ```
 $ tensorboard --logdir engeval-model/runs/ --port port-number --bind_all
 ```
-
-- f1 score for dev set
-![](/data/eval_f1.png)
 
 # Finetune RoBERTa
 
