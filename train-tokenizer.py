@@ -20,7 +20,7 @@ def main():
     
     parser.add_argument('--data_dir', type=str, default='wikitext-2-raw')
     parser.add_argument('--file_suffix', type=str, default='raw')
-    parser.add_argument('--vocab_size', default=52000, type=int)
+    parser.add_argument('--vocab_size', default=50265, type=int)
     parser.add_argument('--min_frequency', default=2, type=int)
     parser.add_argument('--tokenizer_name', type=str, default='roberta')
     parser.add_argument('--use_char_bpe', action='store_true', help="use character level bpe instead of byte level.")
