@@ -91,7 +91,7 @@ PDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]}))/..)
 DATA_DIR=${CDIR}/korean
 FILE_SUFFIX=txt
 VOCAB_SIZE=50265
-TOKENIZER_NAME=roberta
+TOKENIZER_NAME=ByteLevelBPETokenizer
 
 TRAIN_FILE=${DATA_DIR}/data.txt.train
 EVAL_FILE=${DATA_DIR}/data.txt.valid
@@ -100,7 +100,7 @@ MODEL_TYPE=roberta
 CONFIG_DIR=${CDIR}/config-kor-roberta-base
 
 function train_tokenizer {
-  python train-tokenizer.py --data_dir=${DATA_DIR} --file_suffix=${FILE_SUFFIX} --vocab_size=${VOCAB_SIZE} --min_frequency=4 --tokenizer_name=${TOKENIZER_NAME} --use_char_bpe
+  python train-roberta-tokenizer.py --data_dir=${DATA_DIR} --file_suffix=${FILE_SUFFIX} --vocab_size=${VOCAB_SIZE} --min_frequency=4 --tokenizer_name=${TOKENIZER_NAME}
   mv ${CDIR}/${TOKENIZER_NAME}-vocab.json ${CONFIG_DIR}/vocab.json
   mv ${CDIR}/${TOKENIZER_NAME}-merges.txt ${CONFIG_DIR}/merges.txt
 }

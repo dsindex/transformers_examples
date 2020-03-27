@@ -4,13 +4,11 @@ import sys
 import os
 import argparse
 import json
-from collections import Counter 
 import pdb
 import logging
 
-from tqdm import tqdm
 from pathlib import Path
-from tokenizers import ByteLevelBPETokenizer, CharBPETokenizer
+from tokenizers import ByteLevelBPETokenizer, CharBPETokenizer, SentencePieceBPETokenizer, BertWordPieceTokenizer
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -22,8 +20,7 @@ def main():
     parser.add_argument('--file_suffix', type=str, default='raw')
     parser.add_argument('--vocab_size', default=50265, type=int)
     parser.add_argument('--min_frequency', default=2, type=int)
-    parser.add_argument('--tokenizer_name', type=str, default='roberta')
-    parser.add_argument('--use_char_bpe', action='store_true', help="use character level bpe instead of byte level.")
+    parser.add_argument('--tokenizer_name', type=str, default='BertWordPieceTokenizer')
     opt = parser.parse_args()
 
     inc_paths = [str(x) for x in Path(opt.data_dir).glob("**/*.%s" % (opt.file_suffix))]
@@ -31,9 +28,14 @@ def main():
     paths = list(set(inc_paths) - set(exc_paths))
 
     # Initialize a tokenizer
-    tokenizer = ByteLevelBPETokenizer()
-    if opt.use_char_bpe:
-        tokenizer = CharBPETokenizer()
+    TOKENIZER_CLASSES = {
+        'ByteLevelBPETokenizer': ByteLevelBPETokenizer,
+        'CharBPETokenizer': CharBPETokenizer,
+        'SentencePieceBPETokenizer': SentencePieceBPETokenizer,
+        'BertWordPieceTokenizer': BertWordPieceTokenizer,
+    }
+    Tokenizer = TOKENIZER_CLASSES[opt.tokenizer_name]
+    tokenizer = Tokenizer()
 
     # Customize training
     tokenizer.train(files=paths, vocab_size=opt.vocab_size, min_frequency=opt.min_frequency, special_tokens=[

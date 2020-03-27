@@ -91,7 +91,7 @@ PDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]}))/..)
 DATA_DIR=${CDIR}/wikitext-2-raw
 FILE_SUFFIX=raw
 VOCAB_SIZE=50265
-TOKENIZER_NAME=roberta
+TOKENIZER_NAME=ByteLevelBPETokenizer
 
 TRAIN_FILE=${DATA_DIR}/wiki.train.raw
 EVAL_FILE=${DATA_DIR}/wiki.test.raw
@@ -100,7 +100,7 @@ MODEL_TYPE=roberta
 CONFIG_DIR=${CDIR}/config-roberta-base
 
 function train_tokenizer {
-  python train-tokenizer.py --data_dir=${DATA_DIR} --file_suffix=${FILE_SUFFIX} --vocab_size=${VOCAB_SIZE} --min_frequency=2 --tokenizer_name=${TOKENIZER_NAME}
+  python train-roberta-tokenizer.py --data_dir=${DATA_DIR} --file_suffix=${FILE_SUFFIX} --vocab_size=${VOCAB_SIZE} --min_frequency=2 --tokenizer_name=${TOKENIZER_NAME}
   mv ${CDIR}/${TOKENIZER_NAME}-vocab.json ${CONFIG_DIR}/vocab.json
   mv ${CDIR}/${TOKENIZER_NAME}-merges.txt ${CONFIG_DIR}/merges.txt
 }
