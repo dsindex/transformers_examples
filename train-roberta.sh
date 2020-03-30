@@ -126,6 +126,7 @@ function train_lm {
 }
 
 rm -rf ${OUTPUT_DIR}
+rm -rf ${DATA_DIR}/*cached*
 
 export CUDA_VISIBLE_DEVICES=0
 
