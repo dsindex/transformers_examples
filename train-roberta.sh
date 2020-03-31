@@ -116,7 +116,7 @@ function train_lm {
     --mlm \
     --config_name ${CONFIG_DIR} \
     --tokenizer_name ${CONFIG_DIR} \
-    --learning_rate 1e-4 \
+    --learning_rate 5e-4 \
     --num_train_epochs 50 \
     --save_total_limit 2 \
     --save_steps 2000 \
