@@ -92,7 +92,6 @@ $ ./finetune-roberta.sh -v -v
 $ ./train-roberta.sh -v -v
 
 * something goes wrong for training Korean RoBERTa from scratch. why?
-* i guess that byte-pair encoding is not suitable for Korean. try to use char-based bpe tokenizer.
 ```
 
 # References
