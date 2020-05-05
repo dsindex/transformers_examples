@@ -105,6 +105,15 @@ function train_tokenizer {
   mv ${CDIR}/${TOKENIZER_NAME}-merges.txt ${CONFIG_DIR}/merges.txt
 }
 
+# from https://arxiv.org/pdf/1907.11692.pdf
+# BERT is optimized with Adam (Kingma and Ba,
+# 2015) using the following parameters: β1 = 0.9,
+# β2 = 0.999, ǫ = 1e-6 and L2 weight decay of 0.01. The learning rate is warmed up
+# over the first 10,000 steps to a peak value of
+# 1e-4, and then linearly decayed. BERT trains
+# with a dropout of 0.1 on all layers and attention weights, and a GELU activation function (Hendrycks and Gimpel, 2016). Models are
+# pretrained for S = 1,000,000 updates, with minibatches containing B = 256 sequences of maximum length T = 512 tokens.
+
 function train_lm {
   python ${CDIR}/run_language_modeling.py \
     --output_dir ${OUTPUT_DIR} \
@@ -116,8 +125,10 @@ function train_lm {
     --mlm \
     --config_name ${CONFIG_DIR} \
     --tokenizer_name ${CONFIG_DIR} \
-    --learning_rate 5e-4 \
-    --num_train_epochs 50 \
+    --learning_rate 6e-6 \
+    --weight_decay 0.01 \
+    --max_steps 1000000 \
+    --warmup_steps 10000 \
     --save_total_limit 2 \
     --save_steps 2000 \
     --per_gpu_train_batch_size 16 \

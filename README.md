@@ -91,7 +91,6 @@ $ ./finetune-roberta.sh -v -v
 * edit vocab_size in config-roberta-base/config.json
 $ ./train-roberta.sh -v -v
 
-* something goes wrong for training Korean RoBERTa from scratch. why?
 ```
 
 # References
