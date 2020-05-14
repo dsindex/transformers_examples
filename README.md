@@ -1,6 +1,6 @@
 # Description
 
-- reference code for named entity tagging using huggingface's [transformers](https://github.com/huggingface/transformers)
+- reference code for huggingface's [transformers](https://github.com/huggingface/transformers)
 - fintuning or training RoBERTa from scratch.
 
 # Requirements
@@ -67,6 +67,17 @@ recall = 0.9297096317280453
 - tensorboardX
 ```
 $ tensorboard --logdir engeval-model/runs/ --port port-number --bind_all
+```
+
+# GLUE Task
+
+- run
+```
+$ ./run-glue.sh -v -v
+...
+05/14/2020 14:01:58 - INFO - __main__ -   ***** Eval results sst-2 *****
+05/14/2020 14:01:58 - INFO - __main__ -     acc = 0.9162844036697247
+05/14/2020 14:01:58 - INFO - __main__ -     loss = 0.6246312452214104
 ```
 
 # Finetune RoBERTa
