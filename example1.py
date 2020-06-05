@@ -18,12 +18,9 @@ print(tokenized_text)
 '''
 
 # Mask a token that we will try to predict back
-masked_index = 6
+masked_index = 5
 tokenized_text[masked_index] = '[MASK]'
 print(tokenized_text)
-'''
-['[CLS]', '죽', '##느냐', '사', '##느냐', '그것이', '[MASK]', '##다', '.', '[SEP]']
-'''
 
 # Convert token to vocabulary indices
 token_ids = tokenizer.convert_tokens_to_ids(tokenized_text)
@@ -31,10 +28,6 @@ token_type_ids = [0] * len(token_ids)
 
 print(token_ids)
 print(token_type_ids) # segment_ids
-'''
-[2, 4024, 11561, 2791, 11561, 13155, 4, 5727, 18, 3]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-'''
 
 # Convert inputs to PyTorch tensors
 token_ids_tensor = torch.tensor([token_ids]).to('cuda')
