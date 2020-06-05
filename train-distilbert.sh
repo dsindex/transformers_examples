@@ -108,7 +108,7 @@ counts_dump=korean/token_counts.${tokenizer_name}.pickle
 vocab_size=100102
 
 function token_counts {
-python scripts/token_counts.py \
+python distillation/scripts/token_counts.py \
     --data_file         ${data_file} \
     --token_counts_dump ${counts_dump} \
     --vocab_size        ${vocab_size}
@@ -119,7 +119,7 @@ student_config=distilbert-base.json
 dump_path=korean/kor-distil-bpe-bert
 
 function train {
-python train.py \
+python distillation/train.py \
     --student_type   distilbert \
     --student_config ${student_config} \
     --teacher_type   bert \

@@ -123,8 +123,12 @@ $ ./train-roberta.sh -v -v
 $ cp -rf ../transformers/examples/distillation .
 $ cp distillation/training_configs/distilbert-base-cased.json distilbert-base.json
 * place teacher model, ex) `pytorch.all.bpe.4.8m_step`
-* edit 'vocab_size' in distilbert-base.json, train-distilbert.sh
+* modify distilbert-base.json, train-distilbert.sh, `vocab_size`
+* modify distillation/train.py, `args.max_model_input_size = 512`
 $ ./train-distilbert.sh -v -v
+
+* tensorboardX
+$ tensorboard --logdir korean/kor-distil-bpe-bert/log/train --port port-number --bind_all
 ```
 
 
