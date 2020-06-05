@@ -2,6 +2,8 @@
 
 - reference code for huggingface's [transformers](https://github.com/huggingface/transformers)
 - fintuning or training RoBERTa from scratch.
+- training DistilBert
+
 
 # Requirements
 
@@ -11,6 +13,8 @@ $ pip install -r requirements
 $ pip install git+https://github.com/huggingface/transformers.git
 ```
 
+
+
 # Examples
 
 ```
@@ -18,6 +22,8 @@ $ python example1.py
 $ python example2.py
 $ python example3.py
 ```
+
+
 
 # NER for CoNLL2003 eng dataset
 
@@ -68,6 +74,8 @@ recall = 0.9297096317280453
 $ tensorboard --logdir engeval-model/runs/ --port port-number --bind_all
 ```
 
+
+
 # GLUE Task
 
 - run
@@ -79,6 +87,8 @@ $ ./run-glue.sh -v -v
 05/14/2020 14:01:58 - INFO - __main__ -     loss = 0.6246312452214104
 ```
 
+
+
 # Finetune RoBERTa
 
 - download raw corpus
@@ -88,6 +98,8 @@ $ ./run-glue.sh -v -v
 ```
 $ ./finetune-roberta.sh -v -v
 ```
+
+
 
 # Training RoBERTa from scratch
 
@@ -103,6 +115,20 @@ $ ./train-roberta.sh -v -v
 
 ```
 
+
+# Training DistilBert
+
+- train
+```
+$ cp -rf ../transformers/examples/distillation .
+$ cp distillation/training_configs/distilbert-base-cased.json distilbert-base.json
+* place teacher model, ex) `pytorch.all.bpe.4.8m_step`
+* edit 'vocab_size' in distilbert-base.json
+$ ./train-distilbert.sh -v -v
+```
+
+
 # References
 
 - https://huggingface.co/blog/how-to-train
+- https://github.com/huggingface/transformers/blob/master/examples/distillation/README.md

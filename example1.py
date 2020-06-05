@@ -7,7 +7,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 # Load pre-trained model tokenizer
-tokenizer = BertTokenizer.from_pretrained('./embeddings/pytorch.all.bpe.4.8m_step')
+tokenizer = BertTokenizer.from_pretrained('./pytorch.all.bpe.4.8m_step')
 
 # Tokenize input
 text = "[CLS] 죽느냐 사느냐 그것이 문제로다. [SEP]"
@@ -35,7 +35,7 @@ token_type_ids_tensor = torch.tensor([token_type_ids]).to('cuda')
 
 ## 2
 # Load pre-trained model (weights)
-model = BertForMaskedLM.from_pretrained('./embeddings/pytorch.all.bpe.4.8m_step')
+model = BertForMaskedLM.from_pretrained('./pytorch.all.bpe.4.8m_step')
 
 # Set the model in evaluation mode to deactivate the DropOut modules
 # This is IMPORTANT to have reproducible results during evaluation!
