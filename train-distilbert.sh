@@ -87,15 +87,51 @@ export -f readlink
 CDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]})))
 PDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]}))/..)
 
-
+cd ${CDIR}
 
 # binarize
-cd ${CDIR}
-FILE_PATH=korean/all.txt
-TOK_NAME=pytorch.all.bpe.4.8m_step 
-DUMP_PATH=korean/binarized_text
+file_path=korean/all.txt
+tokenizer_name=pytorch.all.bpe.4.8m_step 
+dump_file=korean/binarized_text
+
+function binarize {
 python distillation/scripts/binarized_data.py \
-    --file_path      ${FILE_PATH} \
+    --file_path      ${file_path} \
     --tokenizer_type bert \
-    --tokenizer_name ${TOK_NAME} \
-    --dump_file      ${DUMP_PATH}
+    --tokenizer_name ${tokenizer_name} \
+    --dump_file      ${dump_file}
+}
+
+# count occurences
+data_file=korean/binarized_text.${tokenizer_name}.pickle
+counts_dump=korean/token_counts.${tokenizer_name}.pickle
+vocab_size=100102
+
+function token_counts {
+python scripts/token_counts.py \
+    --data_file         ${data_file} \
+    --token_counts_dump ${counts_dump} \
+    --vocab_size        ${vocab_size}
+}
+
+# distillation
+student_config=distilbert-base.json
+dump_path=korean/kor-distil-bpe-bert
+
+function train {
+python train.py \
+    --student_type   distilbert \
+    --student_config ${student_config} \
+    --teacher_type   bert \
+    --teacher_name   ${tokenizer_name} \
+    --alpha_ce 5.0 --alpha_mlm 2.0 --alpha_cos 1.0 --alpha_clm 0.0 --mlm \
+    --freeze_pos_embs \
+    --dump_path      ${dump_path}  \
+    --data_file      ${data_file} \
+    --token_counts   ${counts_dump} \
+    --force # overwrites the `dump_path` if it already exists.
+}
+
+binarize
+token_counts
+train

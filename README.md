@@ -123,7 +123,7 @@ $ ./train-roberta.sh -v -v
 $ cp -rf ../transformers/examples/distillation .
 $ cp distillation/training_configs/distilbert-base-cased.json distilbert-base.json
 * place teacher model, ex) `pytorch.all.bpe.4.8m_step`
-* edit 'vocab_size' in distilbert-base.json
+* edit 'vocab_size' in distilbert-base.json, train-distilbert.sh
 $ ./train-distilbert.sh -v -v
 ```
 
