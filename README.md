@@ -13,10 +13,10 @@ $ pip install git+https://github.com/huggingface/transformers.git
 
 # Examples
 
-- BERT usage
 ```
 $ python example1.py
 $ python example2.py
+$ python example3.py
 ```
 
 # NER for CoNLL2003 eng dataset
