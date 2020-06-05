@@ -6,10 +6,8 @@
 # Requirements
 
 ```
-* python 3.6
-* CUDA 10
+* python >= 3.6
 $ pip install -r requirements
-$ pip install tensorflow-gpu==2.0.0
 $ pip install git+https://github.com/huggingface/transformers.git
 ```
 
@@ -20,7 +18,7 @@ $ pip install git+https://github.com/huggingface/transformers.git
 $ python example1.py
 ```
 
-# NER for CoNLL2003 eng dataset(using word only)
+# NER for CoNLL2003 eng dataset
 
 - train and evaluate
 ```
