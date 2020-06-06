@@ -126,6 +126,14 @@ $ cp distillation/training_configs/distilbert-base-cased.json distilbert-base.js
 * modify distilbert-base.json, train-distilbert.sh, `vocab_size`
 * modify distillation/train.py, `args.max_model_input_size = 512`
 $ ./train-distilbert.sh -v -v
+* training parameters
+$ cat korean/kor-distil-bpe-bert/parameters.json
+   ...
+   "n_epoch": 3,
+   "batch_size": 5,
+   "group_by_size": true,
+   "gradient_accumulation_steps": 50,
+   ...
 
 * tensorboardX
 $ tensorboard --logdir korean/kor-distil-bpe-bert/log/train --port port-number --bind_all
