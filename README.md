@@ -129,6 +129,19 @@ $ ./train-distilbert.sh -v -v
 
 * tensorboardX
 $ tensorboard --logdir korean/kor-distil-bpe-bert/log/train --port port-number --bind_all
+
+* make model archive, ex) kor-distil-bpe-bert.v1
+$ cp -rf distilbert-base-uncased kor-distil-bpe-bert.v1
+$ cp -rf korean/kor-distil-bpe-bert/config.json kor-distil-bpe-bert.v1
+** add to kor-distil-bpe-bert.v1/config.json
+   "architectures": [
+     "DistilBertModel"
+   ],
+** copy vocab
+$ cp pytorch.all.bep.4.8m_step/vocab.txt kor-distil-bpe-bert.v1
+** copy model
+$ cp korean/kor-distil-bpe-bert/checkpoint.pth kor-distil-bpe-bert.v1/pytorch_model.bin
+
 ```
 
 
