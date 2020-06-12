@@ -95,11 +95,11 @@ tokenizer_name=pytorch.all.bpe.4.8m_step
 dump_file=korean/binarized_text
 
 function binarize {
-python distillation/scripts/binarized_data.py \
-    --file_path      ${file_path} \
-    --tokenizer_type bert \
-    --tokenizer_name ${tokenizer_name} \
-    --dump_file      ${dump_file}
+    python distillation/scripts/binarized_data.py \
+        --file_path      ${file_path} \
+        --tokenizer_type bert \
+        --tokenizer_name ${tokenizer_name} \
+        --dump_file      ${dump_file}
 }
 
 # count occurences
@@ -108,10 +108,21 @@ counts_dump=korean/token_counts.${tokenizer_name}.pickle
 vocab_size=100102
 
 function token_counts {
-python distillation/scripts/token_counts.py \
-    --data_file         ${data_file} \
-    --token_counts_dump ${counts_dump} \
-    --vocab_size        ${vocab_size}
+    python distillation/scripts/token_counts.py \
+        --data_file         ${data_file} \
+        --token_counts_dump ${counts_dump} \
+        --vocab_size        ${vocab_size}
+}
+
+# dump lower layer weights from teacher model
+student_pretrained_weights=korean/student_pretrained_weights
+
+function extract_weights {
+    python distillation/scripts/extract_distilbert.py \
+        --model_type       bert \
+        --model_name       ${tokenizer_name} \
+        --dump_checkpoint  ${student_pretrained_weights} \
+        --vocab_transform
 }
 
 # distillation
@@ -119,19 +130,21 @@ student_config=distilbert-base.json
 dump_path=korean/kor-distil-bpe-bert
 
 function train {
-python distillation/train.py \
-    --student_type   distilbert \
-    --student_config ${student_config} \
-    --teacher_type   bert \
-    --teacher_name   ${tokenizer_name} \
-    --alpha_ce 5.0 --alpha_mlm 2.0 --alpha_cos 1.0 --alpha_clm 0.0 --mlm \
-    --freeze_pos_embs \
-    --dump_path      ${dump_path}  \
-    --data_file      ${data_file} \
-    --token_counts   ${counts_dump} \
-    --force # overwrites the `dump_path` if it already exists.
+    python distillation/train.py \
+        --student_type               distilbert \
+        --student_config             ${student_config} \
+        --student_pretrained_weights ${student_pretraind_weights} \
+        --teacher_type               bert \
+        --teacher_name               ${tokenizer_name} \
+        --alpha_ce 5.0 --alpha_mlm 2.0 --alpha_cos 1.0 --alpha_clm 0.0 --mlm \
+        --freeze_pos_embs \
+        --dump_path                  ${dump_path}  \
+        --data_file                  ${data_file} \
+        --token_counts               ${counts_dump} \
+        --force # overwrites the `dump_path` if it already exists.
 }
 
 binarize
 token_counts
+extract_weights
 train

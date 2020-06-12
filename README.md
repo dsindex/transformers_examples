@@ -122,9 +122,10 @@ $ ./train-roberta.sh -v -v
 ```
 $ cp -rf ../transformers/examples/distillation .
 $ cp distillation/training_configs/distilbert-base-cased.json distilbert-base.json
-* place teacher model, ex) `pytorch.all.bpe.4.8m_step`
+* place teacher model to current dir, ex) `pytorch.all.bpe.4.8m_step`
 * modify distilbert-base.json, train-distilbert.sh, `vocab_size`
 * modify distillation/train.py, `args.max_model_input_size = 512`
+
 $ ./train-distilbert.sh -v -v
 * training parameters
 $ cat korean/kor-distil-bpe-bert/parameters.json
@@ -148,7 +149,7 @@ $ cp -rf korean/kor-distil-bpe-bert/config.json kor-distil-bpe-bert.v1
 ** copy vocab
 $ cp pytorch.all.bep.4.8m_step/vocab.txt kor-distil-bpe-bert.v1
 ** copy model
-$ cp korean/kor-distil-bpe-bert/checkpoint.pth kor-distil-bpe-bert.v1/pytorch_model.bin
+$ cp korean/kor-distil-bpe-bert/pytorch_model.bin kor-distil-bpe-bert.v1/
 
 ```
 
