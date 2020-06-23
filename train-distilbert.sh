@@ -90,8 +90,8 @@ PDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]}))/..)
 cd ${CDIR}
 
 # binarize
-file_path=korean/all.txt
-tokenizer_name=pytorch.all.bpe.4.8m_step 
+file_path=korean/all.dha
+tokenizer_name=pytorch.all.dha.2.5m_step
 dump_file=korean/binarized_text
 
 function binarize {
@@ -105,7 +105,7 @@ function binarize {
 # count occurences
 data_file=korean/binarized_text.${tokenizer_name}.pickle
 counts_dump=korean/token_counts.${tokenizer_name}.pickle
-vocab_size=100102
+vocab_size=202592
 
 function token_counts {
     python distillation/scripts/token_counts.py \
@@ -127,13 +127,13 @@ function extract_weights {
 
 # distillation
 student_config=distilbert-base.json
-dump_path=korean/kor-distil-bpe-bert
+dump_path=korean/kor-distil-dha-bert
 
 function train {
     python distillation/train.py \
         --student_type               distilbert \
         --student_config             ${student_config} \
-        --student_pretrained_weights ${student_pretraind_weights} \
+        --student_pretrained_weights ${student_pretrained_weights} \
         --teacher_type               bert \
         --teacher_name               ${tokenizer_name} \
         --alpha_ce 5.0 --alpha_mlm 2.0 --alpha_cos 1.0 --alpha_clm 0.0 --mlm \

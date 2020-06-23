@@ -123,10 +123,15 @@ $ ./train-roberta.sh -v -v
 $ cp -rf ../transformers/examples/distillation .
 $ cp distillation/training_configs/distilbert-base-cased.json distilbert-base.json
 * place teacher model to current dir, ex) `pytorch.all.bpe.4.8m_step`
-* modify distilbert-base.json, train-distilbert.sh, `vocab_size`
-* modify distillation/train.py, `args.max_model_input_size = 512`
+* modify distilbert-base.json, train-distilbert.sh : `vocab_size`
+* modify distillation/train.py : `args.max_model_input_size = 512`
 
 $ ./train-distilbert.sh -v -v
+...
+06/17/2020 21:37:02 - INFO - transformers.configuration_utils - PID: 2470 -  Configuration saved in korean/kor-distil-bpe-bert/config.json
+06/17/2020 21:37:04 - INFO - utils - PID: 2470 -  Training is finished
+06/17/2020 21:37:04 - INFO - utils - PID: 2470 -  Let's go get some drinks.
+
 * training parameters
 $ cat korean/kor-distil-bpe-bert/parameters.json
    ...
