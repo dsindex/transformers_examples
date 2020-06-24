@@ -128,6 +128,7 @@ function extract_weights {
 # distillation
 student_config=distilbert-base.json
 dump_path=korean/kor-distil-dha-bert
+batch_size=3 # default 5
 
 function train {
     python distillation/train.py \
@@ -137,6 +138,7 @@ function train {
         --teacher_type               bert \
         --teacher_name               ${tokenizer_name} \
         --alpha_ce 5.0 --alpha_mlm 2.0 --alpha_cos 1.0 --alpha_clm 0.0 --mlm \
+        --batch_size                 ${batch_size} \
         --freeze_pos_embs \
         --dump_path                  ${dump_path}  \
         --data_file                  ${data_file} \
