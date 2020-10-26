@@ -125,13 +125,13 @@ function train_lm {
     --mlm \
     --config_name ${CONFIG_DIR} \
     --tokenizer_name ${CONFIG_DIR} \
-    --learning_rate 6e-6 \
+    --learning_rate 5e-5 \
     --weight_decay 0.01 \
     --max_steps 1000000 \
     --warmup_steps 10000 \
     --save_total_limit 2 \
     --save_steps 2000 \
-    --per_gpu_train_batch_size 16 \
+    --per_device_train_batch_size 64 \
     --evaluate_during_training \
     --seed 42 
 }
