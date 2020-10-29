@@ -78,7 +78,12 @@ $ tensorboard --logdir engeval-model/runs/ --port port-number --bind_all
 
 - run
 ```
+* automatically downloading data
 $ ./run-glue.sh -v -v
+
+* with local data
+$ python download_glue_data.py
+$ ./run-glue-old-version.sh -v -v
 ...
 05/14/2020 14:01:58 - INFO - __main__ -   ***** Eval results sst-2 *****
 05/14/2020 14:01:58 - INFO - __main__ -     acc = 0.9162844036697247
