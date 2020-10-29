@@ -28,6 +28,8 @@ $ python example3.py
 ```
 $ cp -rf ../transformers/examples/token-classification .
 
+* roberta-base
+
 $ ./train-ner.sh -v -v
 
 $ ./eval-ner.sh -v -v
@@ -53,15 +55,6 @@ $ ./run-glue.sh -v -v
 10/29/2020 14:10:47 - INFO - __main__ -     eval_accuracy = 0.9243119266055045
 10/29/2020 14:10:47 - INFO - __main__ -     epoch = 3.0
 10/29/2020 14:10:47 - INFO - __main__ -     total_flos = 16988827310258688
-
-* `run_glue_old_versoin.py`is old version of `run_glue.py`
-
-$ python download_glue_data.py
-$ ./run-glue-old-version.sh -v -v
-...
-05/14/2020 14:01:58 - INFO - __main__ -   ***** Eval results sst-2 *****
-05/14/2020 14:01:58 - INFO - __main__ -     acc = 0.9162844036697247
-05/14/2020 14:01:58 - INFO - __main__ -     loss = 0.6246312452214104
 ```
 
 

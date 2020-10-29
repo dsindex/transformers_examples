@@ -88,7 +88,7 @@ CDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]})))
 PDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]}))/..)
 
 MAX_LENGTH=180
-MODEL_NAME_OR_PATH=roberta-large # bert-large-cased
+MODEL_NAME_OR_PATH=./roberta-base
 OUTPUT_DIR=engeval-model
 SEED=1
 

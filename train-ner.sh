@@ -94,7 +94,7 @@ cat train.txt dev.txt test.txt | cut -d " " -f 2 | grep -v "^$"| sort | uniq > l
 cd -
 
 MAX_LENGTH=180
-MODEL_NAME_OR_PATH=roberta-large # bert-large-cased
+MODEL_NAME_OR_PATH=./roberta-base
 OUTPUT_DIR=engeval-model
 BATCH_SIZE=32
 NUM_EPOCHS=8
