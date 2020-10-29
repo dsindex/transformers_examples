@@ -47,7 +47,7 @@ def main():
     ])
 
     # Save files to disk
-    tokenizer.save(".", opt.tokenizer_name)
+    tokenizer.save_model(".", opt.tokenizer_name)
 
 if __name__ == '__main__':
     main()
