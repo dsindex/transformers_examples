@@ -31,8 +31,24 @@ $ cp -rf ../transformers/examples/token-classification .
 * roberta-base
 
 $ ./train-ner.sh -v -v
+...
+10/29/2020 20:57:47 - INFO - __main__ -   ***** Eval results *****
+10/29/2020 20:57:47 - INFO - __main__ -     eval_loss = 0.044062983244657516
+10/29/2020 20:57:47 - INFO - __main__ -     eval_accuracy_score = 0.9920563840971924
+10/29/2020 20:57:47 - INFO - __main__ -     eval_precision = 0.9507676902536716
+10/29/2020 20:57:47 - INFO - __main__ -     eval_recall = 0.9587680915516661
+10/29/2020 20:57:47 - INFO - __main__ -     eval_f1 = 0.9547511312217194
+10/29/2020 20:57:47 - INFO - __main__ -     epoch = 8.0
+10/29/2020 20:57:47 - INFO - __main__ -     total_flos = 15050482511624640
+...
 
 $ ./eval-ner.sh -v -v
+...
+10/29/2020 21:05:16 - INFO - __main__ -     eval_loss = 0.16634580492973328
+10/29/2020 21:05:16 - INFO - __main__ -     eval_accuracy_score = 0.9797351135996555
+10/29/2020 21:05:16 - INFO - __main__ -     eval_precision = 0.8886010362694301
+10/29/2020 21:05:16 - INFO - __main__ -     eval_recall = 0.9109419263456091
+10/29/2020 21:05:16 - INFO - __main__ -     eval_f1 = 0.8996328029375766
 ```
 
 - tensorboardX

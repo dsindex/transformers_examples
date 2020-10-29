@@ -106,22 +106,24 @@ SEED=1
 
 
 function train {
-  python ${CDIR}/token-classification/run_ner.py --data_dir ${CDIR}/data \
-  --labels ${CDIR}/data/labels.txt \
-  --model_name_or_path ${MODEL_NAME_OR_PATH} \
-  --output_dir ${OUTPUT_DIR} \
-  --overwrite_output_dir \
-  --max_seq_length  ${MAX_LENGTH} \
-  --num_train_epochs ${NUM_EPOCHS} \
-  --per_device_train_batch_size ${BATCH_SIZE} \
-  --learning_rate  ${LEARNING_RATE} \
-  --warmup_steps   ${WARMUP_STEPS} \
-  --logging_steps  ${LOGGING_STEPS} \
-  --save_steps ${SAVE_STEPS} \
-  --seed ${SEED} \
-  --do_train \
-  --evaluate_during_training \
-  --do_eval
+  python ${CDIR}/token-classification/run_ner.py \
+      --data_dir ${CDIR}/data \
+      --labels ${CDIR}/data/labels.txt \
+      --model_name_or_path ${MODEL_NAME_OR_PATH} \
+      --output_dir ${OUTPUT_DIR} \
+      --overwrite_output_dir \
+      --max_seq_length  ${MAX_LENGTH} \
+      --num_train_epochs ${NUM_EPOCHS} \
+      --per_device_train_batch_size ${BATCH_SIZE} \
+      --learning_rate  ${LEARNING_RATE} \
+      --warmup_steps   ${WARMUP_STEPS} \
+      --logging_steps  ${LOGGING_STEPS} \
+      --save_steps ${SAVE_STEPS} \
+      --seed ${SEED} \
+      --do_train \
+      --evaluate_during_training \
+      --do_eval \
+      --do_predict
 }
 
 rm -rf ${OUTPUT_DIR}
