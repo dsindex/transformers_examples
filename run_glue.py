@@ -394,19 +394,13 @@ def main():
         for test_dataset, task in zip(test_datasets, tasks):
             # Removing the `label` columns because it contains -1 and Trainer won't like that.
             test_dataset.remove_columns_("label")
-            # XXX modified by dsindex
-            predict_result = trainer.predict(test_dataset=test_dataset)
-            predictions = predict_result.predictions
+            predictions = trainer.predict(test_dataset=test_dataset).predictions
             predictions = np.squeeze(predictions) if is_regression else np.argmax(predictions, axis=1)
 
             output_test_file = os.path.join(training_args.output_dir, f"test_results_{task}.txt")
             if trainer.is_world_process_zero():
                 with open(output_test_file, "w") as writer:
                     logger.info(f"***** Test results {task} *****")
-                    # XXX modified by dsindex
-                    for key, value in predict_result.items():
-                        logger.info(f"  {key} = {value}")
-                        writer.write(f"{key} = {value}\n")
                     writer.write("index\tprediction\n")
                     for index, item in enumerate(predictions):
                         if is_regression:

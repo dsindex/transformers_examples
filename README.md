@@ -125,6 +125,8 @@ $ ./finetune-roberta.sh -v -v
 * split data if necessary
 * $ python split.py --data_path=korean/all.txt --base_path=korean/data.txt --ratio=1000
 
+$ cp -rf ../transformers/examples/language-modeling/run_language_modeling.py .
+
 * edit vocab_size in config-roberta-base/config.json
 $ ./train-roberta.sh -v -v
 
