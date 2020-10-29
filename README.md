@@ -27,7 +27,7 @@ $ python example3.py
 
 - train and evaluate
 ```
-* `run_ner.py` is old version from `transformers/example`.
+* `run_ner.py` is old version from `transformers/examples/token-classification`.
 
 $ ./train-ner.sh -v -v
 
