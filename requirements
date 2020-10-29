@@ -1,5 +1,5 @@
 torch>=1.6.0
-transformers
+transformers>=3.4.0
 datasets
 tokenizers
 tqdm
