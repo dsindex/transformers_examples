@@ -114,6 +114,8 @@ function train_tokenizer {
 # with a dropout of 0.1 on all layers and attention weights, and a GELU activation function (Hendrycks and Gimpel, 2016). Models are
 # pretrained for S = 1,000,000 updates, with minibatches containing B = 256 sequences of maximum length T = 512 tokens.
 
+# learning_rate 5e-5, batch_size 64 (4 GPU, per_device_train_batch_size 16)
+
 function train_lm {
   python ${CDIR}/run_language_modeling.py \
     --output_dir ${OUTPUT_DIR} \
@@ -131,15 +133,13 @@ function train_lm {
     --warmup_steps 10000 \
     --save_total_limit 2 \
     --save_steps 2000 \
-    --per_device_train_batch_size 64 \
+    --per_device_train_batch_size 16 \
     --evaluate_during_training \
     --seed 42 
 }
 
 rm -rf ${OUTPUT_DIR}
 rm -rf ${DATA_DIR}/*cached*
-
-export CUDA_VISIBLE_DEVICES=0
 
 train_tokenizer
 train_lm

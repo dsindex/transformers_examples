@@ -12,7 +12,6 @@
 ```
 * python >= 3.6
 $ pip install -r requirements
-$ pip install git+https://github.com/huggingface/transformers.git
 ```
 
 # Examples
@@ -27,7 +26,8 @@ $ python example3.py
 
 - train and evaluate
 ```
-* `run_ner.py` is old version from `transformers/examples/token-classification`.
+* `run_ner.py` is old version of `transformers/examples/token-classification/run_ner.py`.
+  this may not be compatible with latest.
 
 $ ./train-ner.sh -v -v
 
@@ -37,24 +37,12 @@ $ ./train-ner.sh -v -v
 
 $ ./eval-ner.sh -v -v
 
-1. bert-base-cased
-
-* dev.txt
-
-* test.txt
-
-2. bert-large-cased
-
-* dev.txt
-
-* test.txt
-
-3. roberta-large
-
 * we can find possible max-f1-score for 'test.txt'.
   => results, _ = evaluate(args, model, tokenizer, labels, pad_token_label_id, mode="test")
   actual f1-score for 'test.txt' is usually lower than this.
   => results, _ = evaluate(args, model, tokenizer, labels, pad_token_label_id, mode="dev")
+
+* roberta-large
 
 * dev.txt
 f1 = 0.9560697518443997
@@ -91,7 +79,7 @@ $ ./run-glue.sh -v -v
 10/29/2020 14:10:47 - INFO - __main__ -     epoch = 3.0
 10/29/2020 14:10:47 - INFO - __main__ -     total_flos = 16988827310258688
 
-* old version of `run_glue.py` == `run_glue_old_versoin.py`
+* `run_glue_old_versoin.py`is old version of `run_glue.py`
 
 $ python download_glue_data.py
 $ ./run-glue-old-version.sh -v -v
@@ -114,9 +102,17 @@ $ cp -rf ../transformers/examples/language-modeling/run_language_modeling.py .
 
 $ ./finetune-roberta.sh -v -v
 
-* error
-ne() received an invalid combination of arguments - got (NoneType)
-related issue : https://github.com/huggingface/transformers/issues/4227
+* trouble shooting
+  ...
+  File "/usr/local/lib/python3.6/dist-packages/transformers/modeling_roberta.py", line 98, in forward
+      position_ids = create_position_ids_from_input_ids(input_ids, self.padding_idx).to(input_ids.device)
+        File "/usr/local/lib/python3.6/dist-packages/transformers/modeling_roberta.py", line 1333, in create_position_ids_from_input_ids
+            mask = input_ids.ne(padding_idx).int()
+  ...
+  ne() received an invalid combination of arguments - got (NoneType)
+
+  modify 'pad_token_id: 1' in config-roberta-base/config.json
+
 ```
 
 
@@ -195,7 +191,7 @@ $ cp pytorch.all.bep.4.8m_step/vocab.txt kor-distil-bpe-bert.v1
 $ cp korean/kor-distil-bpe-bert/pytorch_model.bin kor-distil-bpe-bert.v1/
 ```
 
-- what about distilling from BERT large?
+- distilling from BERT large?
   - 'attention heads', 'hidden size', 'FFN inner hidden size' are different.
   - therefore, we should train a modified BERT large with same 'attention heads', 'hidden size', 'FFN inner hidden size' from scratch.
   - and then, distil to distilbert.
