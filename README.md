@@ -127,7 +127,22 @@ $ cp -rf ../transformers/examples/distillation .
 $ cp distillation/training_configs/distilbert-base-cased.json distilbert-base.json
 * place teacher model to current dir, ex) `pytorch.all.bpe.4.8m_step`
 * modify distilbert-base.json, train-distilbert.sh : `vocab_size`
-* modify distillation/train.py : `args.max_model_input_size = 512`
+{
+	"activation": "gelu",
+	"attention_dropout": 0.1,
+	"dim": 768,
+	"dropout": 0.1,
+	"hidden_dim": 3072,
+	"initializer_range": 0.02,
+	"max_position_embeddings": 512,
+	"n_heads": 12,
+	"n_layers": 6,
+	"sinusoidal_pos_embds": true,
+	"tie_weights_": true,
+	"vocab_size": 202592
+}
+* modify distillation/train.py : `max_model_input_size`
+args.max_model_input_size = 512
 
 $ ./train-distilbert.sh -v -v
 ...
