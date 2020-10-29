@@ -79,6 +79,12 @@ $ tensorboard --logdir engeval-model/runs/ --port port-number --bind_all
 - run
 ```
 $ ./run-glue.sh -v -v
+...
+10/29/2020 14:10:47 - INFO - __main__ -   ***** Eval results sst2 *****
+10/29/2020 14:10:47 - INFO - __main__ -     eval_loss = 0.2560681700706482
+10/29/2020 14:10:47 - INFO - __main__ -     eval_accuracy = 0.9243119266055045
+10/29/2020 14:10:47 - INFO - __main__ -     epoch = 3.0
+10/29/2020 14:10:47 - INFO - __main__ -     total_flos = 16988827310258688
 
 * old version 
 $ python download_glue_data.py

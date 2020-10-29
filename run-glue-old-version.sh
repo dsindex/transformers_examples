@@ -100,6 +100,6 @@ python run_glue.py \
     --per_gpu_train_batch_size=32   \
     --per_gpu_eval_batch_size=64   \
     --learning_rate 2e-5 \
-    --num_train_epochs 10 \
+    --num_train_epochs 3 \
     --output_dir wdir/${TASK_NAME} \
     --overwrite_output_dir
