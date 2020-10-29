@@ -99,7 +99,7 @@ EVAL_DATA_FILE=${TEST_FILE}
 
 
 function train {
-  python ${CDIR}/run_language_modeling.py \
+  python ${CDIR}/language-modeling/run_language_modeling.py \
     --output_dir ${OUTPUT_DIR} \
     --model_type ${MODEL_TYPE} \
     --model_name_or_path ${MODEL_NAME_OR_PATH} \

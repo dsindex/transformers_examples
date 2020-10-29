@@ -88,7 +88,6 @@ CDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]})))
 PDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]}))/..)
 
 MAX_LENGTH=180
-MODEL_TYPE=roberta               # bert
 MODEL_NAME_OR_PATH=roberta-large # bert-large-cased
 OUTPUT_DIR=engeval-model
 SEED=1
@@ -96,8 +95,7 @@ SEED=1
 function evaluate {
   local _OUTPUT_DIR=$1
 
-  python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
-  --model_type ${MODEL_TYPE} \
+  python ${CDIR}/token-classification/run_ner.py --data_dir ${CDIR}/data \
   --labels ${CDIR}/data/labels.txt \
   --model_name_or_path ${MODEL_NAME_OR_PATH} \
   --output_dir ${_OUTPUT_DIR} \

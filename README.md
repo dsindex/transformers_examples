@@ -26,36 +26,11 @@ $ python example3.py
 
 - train and evaluate
 ```
-* `run_ner.py` is old version of `transformers/examples/token-classification/run_ner.py`.
-  this may not be compatible with latest.
+$ cp -rf ../transformers/examples/token-classification .
 
 $ ./train-ner.sh -v -v
 
-* select the checkpoint dir for the best model, you may refer to the tensorboard.
-* modify eval-ner.sh
-* ex) evaluate ${OUTPUT_DIR}/checkpoint-3550
-
 $ ./eval-ner.sh -v -v
-
-* we can find possible max-f1-score for 'test.txt'.
-  => results, _ = evaluate(args, model, tokenizer, labels, pad_token_label_id, mode="test")
-  actual f1-score for 'test.txt' is usually lower than this.
-  => results, _ = evaluate(args, model, tokenizer, labels, pad_token_label_id, mode="dev")
-
-* roberta-large
-
-* dev.txt
-f1 = 0.9560697518443997
-loss = 0.047375404791811564
-precision = 0.9525559639158035
-recall = 0.9596095590710199
-
-* test.txt
-f1 = 0.9216322948661694
-loss = 0.15627447860190471
-precision = 0.913694101270228
-recall = 0.9297096317280453
-
 ```
 
 - tensorboardX
@@ -69,7 +44,7 @@ $ tensorboard --logdir engeval-model/runs/ --port port-number --bind_all
 
 - run
 ```
-$ cp -rf ../transformers/examples/text-classification/run_glue.py .
+$ cp -rf ../transformers/examples/text-classification .
 
 $ ./run-glue.sh -v -v
 ...
@@ -98,7 +73,7 @@ $ ./run-glue-old-version.sh -v -v
 
 - train
 ```
-$ cp -rf ../transformers/examples/language-modeling/run_language_modeling.py .
+$ cp -rf ../transformers/examples/language-modeling .
 
 $ ./finetune-roberta.sh -v -v
 
@@ -126,7 +101,7 @@ $ ./finetune-roberta.sh -v -v
 * split data if necessary
 * $ python split.py --data_path=korean/all.txt --base_path=korean/data.txt --ratio=1000
 
-$ cp -rf ../transformers/examples/language-modeling/run_language_modeling.py .
+$ cp -rf ../transformers/examples/language-modeling .
 
 * edit vocab_size in config-roberta-base/config.json
 $ ./train-roberta.sh -v -v

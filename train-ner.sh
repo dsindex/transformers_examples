@@ -94,7 +94,6 @@ cat train.txt dev.txt test.txt | cut -d " " -f 2 | grep -v "^$"| sort | uniq > l
 cd -
 
 MAX_LENGTH=180
-MODEL_TYPE=roberta               # bert
 MODEL_NAME_OR_PATH=roberta-large # bert-large-cased
 OUTPUT_DIR=engeval-model
 BATCH_SIZE=32
@@ -107,15 +106,14 @@ SEED=1
 
 
 function train {
-  python ${CDIR}/run_ner.py --data_dir ${CDIR}/data \
-  --model_type ${MODEL_TYPE} \
+  python ${CDIR}/token-classification/run_ner.py --data_dir ${CDIR}/data \
   --labels ${CDIR}/data/labels.txt \
   --model_name_or_path ${MODEL_NAME_OR_PATH} \
   --output_dir ${OUTPUT_DIR} \
   --overwrite_output_dir \
   --max_seq_length  ${MAX_LENGTH} \
   --num_train_epochs ${NUM_EPOCHS} \
-  --per_gpu_train_batch_size ${BATCH_SIZE} \
+  --per_device_train_batch_size ${BATCH_SIZE} \
   --learning_rate  ${LEARNING_RATE} \
   --warmup_steps   ${WARMUP_STEPS} \
   --logging_steps  ${LOGGING_STEPS} \

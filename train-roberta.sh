@@ -117,7 +117,7 @@ function train_tokenizer {
 # learning_rate 5e-5, batch_size 64 (4 GPU, per_device_train_batch_size 16)
 
 function train_lm {
-  python ${CDIR}/run_language_modeling.py \
+  python ${CDIR}/language-modeling/run_language_modeling.py \
     --output_dir ${OUTPUT_DIR} \
     --model_type ${MODEL_TYPE} \
     --do_train \

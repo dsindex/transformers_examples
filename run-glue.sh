@@ -89,7 +89,7 @@ PDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]}))/..)
 
 TASK_NAME=sst2
 
-python run_glue.py \
+python ${CDIR}/text-classification/run_glue.py \
     --model_name_or_path bert-base-uncased \
     --task_name ${TASK_NAME} \
     --do_train \
