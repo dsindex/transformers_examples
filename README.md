@@ -78,10 +78,9 @@ $ tensorboard --logdir engeval-model/runs/ --port port-number --bind_all
 
 - run
 ```
-* automatically downloading data
 $ ./run-glue.sh -v -v
 
-* with local data
+* old version 
 $ python download_glue_data.py
 $ ./run-glue-old-version.sh -v -v
 ...
