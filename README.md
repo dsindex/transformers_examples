@@ -1,9 +1,11 @@
 # Description
 
 - reference code for huggingface's [transformers](https://github.com/huggingface/transformers)
-- fintuning or training RoBERTa from scratch.
-- training DistilBert
-
+  - simple examples
+  - NER task
+  - GLUE task
+  - fintuning or training RoBERTa from scratch.
+  - training DistilBert
 
 # Requirements
 
@@ -13,8 +15,6 @@ $ pip install -r requirements
 $ pip install git+https://github.com/huggingface/transformers.git
 ```
 
-
-
 # Examples
 
 ```
@@ -22,8 +22,6 @@ $ python example1.py
 $ python example2.py
 $ python example3.py
 ```
-
-
 
 # NER for CoNLL2003 eng dataset
 
@@ -156,9 +154,12 @@ $ cp -rf korean/kor-distil-bpe-bert/config.json kor-distil-bpe-bert.v1
 $ cp pytorch.all.bep.4.8m_step/vocab.txt kor-distil-bpe-bert.v1
 ** copy model
 $ cp korean/kor-distil-bpe-bert/pytorch_model.bin kor-distil-bpe-bert.v1/
-
 ```
 
+- what about distilling from BERT large?
+  - 'attention heads', 'hidden size', 'FFN inner hidden size' are different.
+  - therefore, we should train a modified BERT large with same 'attention heads', 'hidden size', 'FFN inner hidden size' from scratch.
+  - and then, distil to distilbert.
 
 # References
 
