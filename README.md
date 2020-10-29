@@ -81,8 +81,7 @@ $ tensorboard --logdir engeval-model/runs/ --port port-number --bind_all
 
 - run
 ```
-* `transformers/examples/text-classification/run_glue.py` was copied and modified. 
-
+$ cp -rf ../transformers/examples/text-classification/run_glue.py .
 $ ./run-glue.sh -v -v
 ...
 10/29/2020 14:10:47 - INFO - __main__ -   ***** Eval results sst2 *****
