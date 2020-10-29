@@ -27,11 +27,14 @@ $ python example3.py
 
 - train and evaluate
 ```
+* `run_ner.py` is old version from `transformers/example`.
+
 $ ./train-ner.sh -v -v
 
 * select the checkpoint dir for the best model, you may refer to the tensorboard.
 * modify eval-ner.sh
 * ex) evaluate ${OUTPUT_DIR}/checkpoint-3550
+
 $ ./eval-ner.sh -v -v
 
 1. bert-base-cased
@@ -78,6 +81,8 @@ $ tensorboard --logdir engeval-model/runs/ --port port-number --bind_all
 
 - run
 ```
+* `transformers/examples/text-classification/run_glue.py` was copied and modified. 
+
 $ ./run-glue.sh -v -v
 ...
 10/29/2020 14:10:47 - INFO - __main__ -   ***** Eval results sst2 *****
@@ -86,7 +91,8 @@ $ ./run-glue.sh -v -v
 10/29/2020 14:10:47 - INFO - __main__ -     epoch = 3.0
 10/29/2020 14:10:47 - INFO - __main__ -     total_flos = 16988827310258688
 
-* old version 
+* old version of `run_glue.py` == `run_glue_old_versoin.py`
+
 $ python download_glue_data.py
 $ ./run-glue-old-version.sh -v -v
 ...
@@ -104,6 +110,7 @@ $ ./run-glue-old-version.sh -v -v
 
 - train
 ```
+$ cp -rf ../transformers/examples/language-modeling/run_language_modeling.py .
 $ ./finetune-roberta.sh -v -v
 ```
 
