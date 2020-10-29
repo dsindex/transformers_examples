@@ -113,6 +113,10 @@ $ ./run-glue-old-version.sh -v -v
 $ cp -rf ../transformers/examples/language-modeling/run_language_modeling.py .
 
 $ ./finetune-roberta.sh -v -v
+
+* error
+ne() received an invalid combination of arguments - got (NoneType)
+related issue : https://github.com/huggingface/transformers/issues/4227
 ```
 
 
